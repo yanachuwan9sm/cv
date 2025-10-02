@@ -1,3 +1,38 @@
+---
+pdf_options:
+  format: a4
+  margin: 20mm 20mm
+  printBackground: true
+  headerTemplate: |-
+    <style>
+      section {
+        margin: 5mm 15mm;
+        font-family: system-ui;
+        font-size: 10px;
+        color: silver;
+      }
+    </style>
+    <section>
+      <span class="title"></span>
+      <span class="date"></span>
+    </section>
+  footerTemplate: |-
+    <section style="margin: 0 auto;">
+      <div>
+        Page <span class="pageNumber"></span>
+        of <span class="totalPages"></span>
+      </div>
+    </section>
+stylesheet: https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.2.0/github-markdown.min.css
+body_class: markdown-body
+css: |-
+  .page-break { page-break-after: always; }
+  .markdown-body { font-size: 16px; }
+  .markdown-body pre > code { white-space: pre-wrap; }
+  .markdown-body pre { background: #eee; }
+  .markdown-body pre { padding: 5px; }
+---
+
 # cv
 
 ## 基本情報
@@ -141,13 +176,127 @@ npm および pnpm を業務で利用しているため基本的な使い方は�
 
 「運用しやすいプロダクトとは何なのか、そのためのチームとしての最適な解決策は何なのか」という部分を大事にしています。 そのためのコンポーネント設計・テスト戦略など考えるのが好きです。
 
-## 株式会社ニジボックス
-
-## 組織内業務管理アプリケーションの設計・開発（フロントエンド）
+## 株式会社ツキワッカ
 
 ### 期間
 
-2024/3 - 現在
+2025/4 - 現在
+
+### 業務概要
+
+SNS 分析レポートツールの開発支援
+
+### 利用した技術
+
+＜フロントエンド＞
+
+開発言語・ライブラリ: JavaScript / React(v18 系) / Vite
+
+CSS ソリューション: MUI
+
+テスト: Vitest、React Testing Library、MSW
+
+ステート管理: Redux / Redux-Saga / Redux Toolkit
+
+＜バックエンド＞
+
+開発言語・ライブラリ: JavaScript / Node.js(Express) / Webpack
+
+データベース: MySQL v8.0 / v5.7（RDS）
+
+決済: Stripe
+
+＜インフラ＞
+
+コンテナ: Docker / ECS on EC2 / ECR
+
+CI/CD: Github Actions
+
+その他: Serverless Framework v3 / API Gateway / AWS Lambda / EventBridge / など
+
+### プロジェクトの規模
+
+エンジニア(2 人) / フロント SE・PMO(1 人)
+
+### 自分の役割・やったこと
+
+新規機能開発において、フロントエンド実装・API スキーマ定義・バックエンド実装を一貫して担当。
+
+既存の不具合対応や細かいアップデートタスクの消化と並行し、新規機能についてはフロント SE および顧客と会話しながら要件整理から基本設計まで実施。
+
+現在は Amazon RDS for MySQL 5.7 系から 8.0 系へのアップグレードを進行中。
+
+業務委託で時間が限られている中、ビジネスの都合上品質よりも機能拡充を優先している状況だが、
+
+テストコードが未整備で React の class 記法や ES2015 以前の書き方が残存しているため、デグレが発生するリスクがある。
+この課題に対し、最低限のテストと CI/CD パイプラインの整備を推進予定。
+
+また、機能一覧やクリティカルユーザージャーニー(CUJ)が存在しないため、ヒアリングを通じて自動化するテストシナリオを定め、E2E テストの導入を検討している。
+
+## 株式会社ニジボックス
+
+## AI エージェントを活用した新規事業向け技術検証プロジェクト
+
+### 期間
+
+2025/7 - 現在
+
+### 業務概要
+
+短期間での実装と検証を目的とした、AI エージェントを活用した技術検証プロジェクト。
+
+### 利用した技術
+
+＜フロントエンド＞
+
+開発言語・ライブラリ: TypeScript / React(v18 系) / Vite / Tailwind CSS / Tanstack Query / Tanstack Router / Zod / shadcn/ui / ts-pattern
+
+＜バックエンド＞
+
+開発言語・ライブラリ: TypeScript / Node.js(Hono) / hono/zod-openapi / neverthrow
+
+テスト: Vitest
+
+データベース: PostgreSQL
+
+ORM: Prisma
+
+＜インフラ＞
+
+AWS Lightsail / Docker
+
+検証環境のみの利用のため、AWS Lightsail 上で フロントエンド・バックエンド・データベースの 3 つのコンテナを起動させることでインフラ構築コストを大幅に削減した。
+
+＜その他＞
+
+Github / Figma / Jira / Miro
+
+### プロジェクトの規模
+
+エンジニア(1 人) / 開発ディレクター(1 人) / PO(1 人)
+
+### 自分の役割・やったこと
+
+開発ディレクター・PO と協働し、技術的制約を整理した上で、
+Claude Code を活用してフロントエンド・バックエンド共に TypeScript で実装した業務フロー自動生成機能のプロトタイプを開発・検証。
+
+pnpm workspace によるモノレポ構成を採用し、`hono/zod-openapi`を用いて API スキーマを Zod で定義。
+zod スキーマを packages として切り出すことで、フロントエンド・バックエンド間で型定義を共有し、開発効率を大幅に向上させた。
+
+AI コーディングアシスタントを開発サイクル全体で戦略的に活用：
+
+- 実装・リリースフェーズ：高速なコーディングによりイテレーション速度を向上
+- 仮説立案・要求整理フェーズ：実装内容を Design Doc として体系化し、技術調査を効率化
+
+この取り組みにより検証サイクルを大幅に短縮し、ビジネス判断の早期化に貢献。
+
+現在はリサーチャーと協働し、新たな顧客ニーズの仮説立案からヒアリングまで実施し、エンジニアリングの枠を超えてビジネス価値の創出に挑戦している。
+
+## 組織内業務管理アプリケーションの設計・開発
+
+### 期間
+
+2024/3 - 2025/6
 
 ### 業務概要
 
@@ -203,7 +352,7 @@ Github / Figma / Jira / Miro
 
 PO、スクラムマスター、デザイナー（3 名）、開発者（5 名）、SRE（1 名）、QE（1 人）
 
-### 自分の役割
+### 自分の役割・やったこと
 
 ・新機能の実装（フロント実装 + API スキーマ定義 + バックエンド実装）
 
@@ -224,6 +373,23 @@ PO、スクラムマスター、デザイナー（3 名）、開発者（5 名�
 ・ログ監視基盤のためのアプリレベルでのログ設計・実装（Pino + AsyncLocalStorage）
 
 ・OpenAPI 定義ファイルを TypeSpec に移行（調査、ADR 作成から実装方針まで決定）
+
+・本プロジェクトのクローズ作業において、他プロジェクトへの移管作業として DynamoDB から PostgreSQL への移行を検討、ORM として Prisma を導入するために調査やマイグレーションの運用方法の検討
+
+### 学んだこと
+
+フロントエンドエンジニアとしてアサインされ、序盤は技術的負債の解消・リファクタリングを推進。
+既存メンバーのフロントエンド知識向上のため、React 公式ドキュメントの輪読会や Tanstack Query 導入に向けたハンズオン形式の勉強会を開催。
+
+中盤以降は、フロントエンドの新規機能実装・リファクタリングと並行して、API スキーマ定義からバックエンド実装まで担当。
+SQS・SNS・Lambda を用いた非同期処理の実装や、ログ監視基盤のためのアプリケーションレベルでのログ設計・実装を実施。
+
+デグレや不具合の問い合わせが増加した際、QA エンジニアと協議し品質向上に注力。
+フロントエンド領域におけるテスト戦略の策定や QA との協議を積極的に実施。
+
+従来は QA が設計段階でテスト分析・設計を行い実装フェーズで共有するフローだったが、担当外のチケットで仕様として押さえるべき観点が漏れる課題があった。
+
+この課題に対し、設計段階でエンジニアが仕様をもとにテストケースを作成し、スプリント開始時に認識合わせを実施後、QA からレビューを受けるフローに改善。その結果、担当外タスクへの当事者意識が高まり、観点漏れが大幅に減少した。
 
 ## 人材領域の国内最大級のメディアの新規開発/保守・エンハンス
 
