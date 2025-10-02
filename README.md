@@ -194,13 +194,11 @@ SNS 分析レポートツールの開発支援
 
 CSS ソリューション: MUI
 
-テスト: Vitest、React Testing Library、MSW
-
 ステート管理: Redux / Redux-Saga / Redux Toolkit
 
 ＜バックエンド＞
 
-開発言語・ライブラリ: JavaScript / Node.js(Express) / Webpack
+開発言語・ライブラリ: JavaScript / Python / Node.js(Express) / Webpack
 
 データベース: MySQL v8.0 / v5.7（RDS）
 
